@@ -38,20 +38,33 @@ export const CreateTeam = () =>{
         clearTimeout(searchTimer);
         searchTimer = setTimeout(()=>{
             setActiveSearch(search);
-        },2000)
+        },1000)
     },[search]);
     
     useEffect(()=>{
 
         getPlayers();
             
-    },[activeSearch]);
+    },[activeSearch,playersSelecteds]);
 
+    const addPlayer=(player)=>{
+        setPlayersSelected([...playersSelecteds,player]);
+    }
 
     const getPlayers=async()=>{
-        const list = await api.getPlayers(activeSearch);
-        setPlayers(list);
-        console.log(list);
+        const list = await api.getPlayers();
+        let filtered=[];
+        if(activeSearch != ""){
+            filtered= list.filter(item => item.name.toUpperCase().includes(activeSearch.toUpperCase()));
+        }else{
+            filtered = list;
+        }
+
+        const finalList = filtered.filter( x => { 
+            return JSON.stringify(playersSelecteds).indexOf(JSON.stringify(x)) < 0;
+          });
+          
+        setPlayers(finalList);
     }
 
     const handleChange = (event) => {
@@ -77,7 +90,7 @@ export const CreateTeam = () =>{
             if(value){
                 api.postTime(time);
             }else{
-
+                console.log("Não foi possivel cadastrar");
             }
         
         })
@@ -87,7 +100,7 @@ export const CreateTeam = () =>{
         return <BoxPlayers>
             {
                 players.map((item,key)=>{
-                    return <Card data={item} key={key}/>
+                    return <Card data={item} key={key} setPlayers={addPlayer}/>
                 })
             }
         </BoxPlayers>

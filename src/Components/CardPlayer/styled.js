@@ -9,7 +9,7 @@ export const Container = styled.div`
     display:flex;
     justify-content:space-between;
     font-size:0.9rem;
-    padding:0.2rem;
+    padding:0.1rem;
     margin-bottom:0.3rem;
     
 `;
@@ -21,7 +21,17 @@ export const Content= styled.div`
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding: 0.3rem;
+    padding: 0.5rem;
+
+`;
+
+export const Add = styled.div`
+    width:1.5em;
+    height:1.5em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor: pointer;
 `;
 
 export const Box = styled.div`
@@ -35,6 +45,7 @@ export const Box = styled.div`
         justify-content:${props => props.side==='left'? "flex-start":"flex-end"};
         
     }
+    z-index:92;
 `;
 
 export const Title = styled.span`

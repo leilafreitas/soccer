@@ -17,9 +17,10 @@ export const timeSchema = yup.object().shape({
             ({
             name: yup.string().required(),
             nationality: yup.string().required(),
-            age:yup.string().required(),
-            playerKey:yup.string().required(),
-            }).required()),
+            age:yup.number().integer().required(),
+            playerId:yup.string().required(),
+            }).required())
+        ,
     description:yup
         .string(),
     type:yup
