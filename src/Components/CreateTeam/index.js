@@ -15,9 +15,13 @@ import { Container,
     RadioGroup,
     BoxPlayers,
     Select,
-    SaveBtn} from './styled';
+    SaveBtn,
+    TagContainer,
+    TagTextArea,
+    Tag,
+    FormItemTags} from './styled';
 import * as yup from 'yup';
-
+import {CloseOutlined} from "@ant-design/icons"
 import {timeSchema} from '../../Helper/Validation';
 
 let searchTimer = null;
@@ -62,7 +66,7 @@ export const CreateTeam = () =>{
 
         const finalList = filtered.filter( x => { 
             return JSON.stringify(playersSelecteds).indexOf(JSON.stringify(x)) < 0;
-          });
+          }); 
           
         setPlayers(finalList);
     }
@@ -155,12 +159,20 @@ export const CreateTeam = () =>{
                     </RadioGroup>
                 </FormItem>
 
-                <FormItem row="3">
+                <FormItemTags row="3">
                     <SubTitle>
                         Tags
                     </SubTitle>
-                    <TextArea/>
-                </FormItem>
+                    <TagContainer>
+                        <ul>
+                            <Tag>Eita<CloseOutlined className="button"style={{color:"#ffffff"}} onClick={()=>{}}/>
+                            </Tag>
+                            <Tag className="input-li">
+                                <TagTextArea placeholder="Tag"/>
+                            </Tag>
+                        </ul>
+                    </TagContainer>  
+                </FormItemTags>
 
             </Box>
                         

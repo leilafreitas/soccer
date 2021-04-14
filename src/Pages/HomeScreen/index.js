@@ -7,7 +7,7 @@ import {MyTeams} from '../../Components/MyTeams';
 import api from '../../Helper/Api';
 import { TopFive } from '../../Components/Top5';
 import {Player} from '../../Components/Player';
-
+import ReactTooltip from 'react-tooltip';
 export const HomeScreen = () =>{
 
     const [teams,setTeams] = useState([]);
@@ -15,7 +15,8 @@ export const HomeScreen = () =>{
     const [orderByName,setOrderByName] = useState(false);
 
     useEffect(()=>{
-        getTeams();           
+        getTeams();
+        ReactTooltip.rebuild();           
     },[]);
 
     const orderName = () =>{

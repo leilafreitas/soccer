@@ -66,10 +66,32 @@ export const FormItem = styled.label`
         }
     }
 
+    section{
+        border:${props => props.error === true?  "0.15em solid #B31256" : "0.15em solid #F7F3F7"};    
+    }
+
     span{
         color:${props => props.error === true?  "#B31256" : "#000000"};
     }
 
+`;
+
+export const FormItemTags = styled.label`
+    grid-row:${props => props.row};
+    width:100%;
+    font-size:0.9em;
+    display:grid;
+    grid-template-rows:2em 1fr;
+    margin-bottom:1rem;
+    input,textarea{
+        border:none;
+        ::placeholder{
+            color:#000000;
+        }
+    }
+    section{
+        border:${props => props.error === true?  "0.15em solid #B31256" : "0.15em solid #F7F3F7"};    
+    }
 `;
 
 export const SubTitle = styled.span`
@@ -91,6 +113,55 @@ export const TextArea = styled.textarea`
     flex:1;
     border-radius:0.2em;
     height:100%;
+`;
+
+export const TagContainer = styled.div`
+    grid-row:2;
+    flex:1;
+    border-radius:0.2em;
+    display: flex;
+    flex-wrap: wrap;
+    border: 0.15em solid #F7F3F7;
+    ul{
+        display: inline-flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        margin:0.5em;
+
+        .input-li{
+        background:none;
+        flex-grow: 1;
+        padding: 0.3em;;
+    }
+    }
+
+`;
+
+export const Tag = styled.li`
+  align-items: center;
+  background: #B31256;
+  border-radius: 1em;
+  color: white;
+  display: flex;
+  font-weight: 300;
+  list-style: none;
+  margin-bottom: 0.4em;
+  margin-right: 0.4em;
+  padding: 0.3em;
+  height:2em;
+
+    .button{
+        margin-left:0.3em;
+    }
+`;
+
+export const TagTextArea = styled.input`
+  border: none;
+  width: 100%;
+  height:2em;
+  border-radius:0em;
 `;
 
 export const RadioGroup = styled.div`

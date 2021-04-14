@@ -9,7 +9,7 @@ export const TopFive = ({data}) => {
 
     useEffect(()=>{
         getAvg();
-    },[]);
+    },[data]);
 
     function somar(total, player) {
         return total + player.age
@@ -42,7 +42,7 @@ export const TopFive = ({data}) => {
             <ListContainer type="left">
                 {
                     listAvgH.map((item,key)=>{
-                        return <ListAVGItem key={key}>
+                        return <ListAVGItem key={key} row={key+1}>
                             <span>{item.name}</span>
                             <span className="avg">{item.avg}</span>
                         </ListAVGItem>
@@ -52,7 +52,7 @@ export const TopFive = ({data}) => {
             <ListContainer type="right">
                 {
                     listAvgL.map((item,key)=>{
-                        return <ListAVGItem key={key} row={key}>
+                        return <ListAVGItem key={key} row={key+1}>
                             <span>{item.name}</span>
                             <span className="avg">{item.avg}</span>
                             </ListAVGItem>

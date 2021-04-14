@@ -44,6 +44,6 @@ export default{
     deleteTeam: async(teamId)=>{
       console.log(teamId);
       await axios.delete(`${BASE}times/${teamId}.json`);
-    }
+    },
           
 }

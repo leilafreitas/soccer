@@ -13,6 +13,7 @@ import {BoxMyTeams,
         TimesActions
     } from './styles';
 import api from '../../Helper/Api';
+import ReactTooltip from 'react-tooltip';
 
 export const MyTeams = ({data,orderName,orderDescription,deleteTeam}) =>{
 
@@ -39,19 +40,26 @@ return  <BoxMyTeams>
             </SortedBox>
             <ListTeamsTable>
                     {
+                        (data.length > 0 &&
                         data.map((item,key)=>{
                             return <ListTeamsItem key={key}>
                                 <ListItemName>{item.name}</ListItemName>
                                 <ListItemDescription>
                                     <span>{item.description}</span>
                                     <TimesActions>
-                                            <DeleteFilled onClick={()=>deleteTeam(item.teamId)}/>
-                                            <ShareAltOutlined />
-                                            <EditFilled/>
+                                            <DeleteFilled 
+                                            data-tip="Delete" data-for="tip-top"
+                                            onClick={()=>deleteTeam(item.teamId)} 
+                                            />
+                                            <ShareAltOutlined
+                                            data-tip="Share" data-for="tip-top" />
+                                            <EditFilled
+                                            data-tip="Edit" data-for="tip-top"/>
                                     </TimesActions>
                                 </ListItemDescription>
                                 </ListTeamsItem>
                         })
+                        )
                     }
             </ListTeamsTable>
     </BoxMyTeams>
