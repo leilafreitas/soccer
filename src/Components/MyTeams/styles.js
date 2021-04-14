@@ -109,6 +109,12 @@ export const ListItemDescription = styled.span`
     display:flex;
     align-items:center;
     justify-content:space-between;
+    span{
+        width:70%;
+        height:100%;
+        display:flex;
+        align-items:center;
+    }
 `;
 
 export const TimesActions = styled.div`

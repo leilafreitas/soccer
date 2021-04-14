@@ -14,22 +14,7 @@ import {BoxMyTeams,
     } from './styles';
 import api from '../../Helper/Api';
 
-export const MyTeams = () =>{
-
-    const lista = [
-        {
-            name:"Leila",
-            description:"Linda"
-        },
-        {
-            name:"Maria",
-            description:"Linda"
-        },
-        {
-            name:"Carlos",
-            description:"Doido"
-        }
-    ]
+export const MyTeams = ({data,orderName,orderDescription,deleteTeam}) =>{
 
 return  <BoxMyTeams>
             <Header>
@@ -39,14 +24,14 @@ return  <BoxMyTeams>
             <SortedBox>
                 <SortTeams type="name">
                     <p>Name</p>
-                    <div>
+                    <div onClick={()=>orderName()}>
                         <CaretUpOutlined style={{fontSize:"0.7em" ,color:"#000000"}}/>
                         <CaretDownOutlined style={{fontSize:"0.7em",color:"#000000"}}/>
                     </div>
                 </SortTeams>
                 <SortTeams type="description">
                     <p>Description</p>
-                    <div>
+                    <div onClick={()=>orderDescription()}>
                         <CaretUpOutlined style={{fontSize:"0.7em",color:"#000000"}}/>
                         <CaretDownOutlined style={{fontSize:"0.7em",color:"#000000"}}/>
                     </div>
@@ -54,13 +39,13 @@ return  <BoxMyTeams>
             </SortedBox>
             <ListTeamsTable>
                     {
-                        lista.map((item,key)=>{
-                            return <ListTeamsItem>
+                        data.map((item,key)=>{
+                            return <ListTeamsItem key={key}>
                                 <ListItemName>{item.name}</ListItemName>
                                 <ListItemDescription>
-                                    {item.description}
+                                    <span>{item.description}</span>
                                     <TimesActions>
-                                            <DeleteFilled />
+                                            <DeleteFilled onClick={()=>deleteTeam(item.teamId)}/>
                                             <ShareAltOutlined />
                                             <EditFilled/>
                                     </TimesActions>

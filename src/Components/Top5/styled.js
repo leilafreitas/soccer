@@ -34,14 +34,15 @@ export const ListContainer = styled.div`
     background-color:#F7F3F7;
     border-radius:0.5em;
     padding:0.1em;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-evenly;
+    display:grid;
+    grid-template-columns:1;
+    grid-template-rows:1fr 1fr 1fr 1fr 1fr;
+
 `;
 
 export const ListAVGItem = styled.div`
+    grid-row:${props=>props.row};
     flex:1;
-    height:calc(100%/5);
     font-size:0.8em;
     background-color:#ffffff;
     border-radius:0.3em;
@@ -49,6 +50,7 @@ export const ListAVGItem = styled.div`
     display:flex;
     margin:0.1em;
     transition: all ease 0.4s;
+    border:0.07rem solid #ffffff;
     span{
         display:flex;
         padding: 0 1em;

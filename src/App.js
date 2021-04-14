@@ -12,12 +12,12 @@ export default () => {
             <HeaderPrincipal/>
             <PageBody>
             <Switch>
-              <Route path="/">
-                  <NewTeam/>
-              </Route>
-
               <Route exact path="/">
                   <HomeScreen />
+              </Route>
+              
+              <Route path="/">
+                  <NewTeam/>
               </Route>
             </Switch>
             </PageBody>

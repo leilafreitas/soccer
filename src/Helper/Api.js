@@ -14,20 +14,14 @@ var requestOptions = {
 };
 
 export default{
-
     getTeams:async()=>{
-        const response = await fetch("https://v3.football.api-sports.io/teams", requestOptions)
-        const result = await response.json();
-        return result.response;
-       /* const response = await axios.get(`${BASE}?&met=Teams&APIkey=${API_KEY}`);
-        console.log(`${BASE}?&met=Teams&APIkey=${API_KEY}`);
-        return(response.result);  */
-    },
-
-    getTeam:async()=>{
       const response = await axios.get(`${BASE}/times.json `);
       if(response.data){
-          console.log(response.data);
+        const players = Object.keys(response.data).map(key =>({
+            ...response.data[key],
+            teamId:key,
+        }));
+        return(players);
       }
     },  
 
@@ -46,5 +40,10 @@ export default{
       const response = await axios.post(`${BASE}/times.json`,newTeam);
       return(response); 
     },
+
+    deleteTeam: async(teamId)=>{
+      console.log(teamId);
+      await axios.delete(`${BASE}times/${teamId}.json`);
+    }
           
 }
