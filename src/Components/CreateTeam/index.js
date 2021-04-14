@@ -2,25 +2,24 @@ import React,{useEffect, useState} from 'react';
 import api from '../../Helper/Api';
 import { Camp } from '../Camp';
 import { Card } from '../CardPlayer';
-import { Container,
-     Header,
-     Title,
-     TextArea,
-     InputText,
-     Box,
-     Content,
-     FormItem,
-     SubTitle,
-     CampContainer,
-    RadioGroup,
-    BoxPlayers,
-    Select,
-    SaveBtn,
-    TagContainer,
-    TagTextArea,
-    Tag,
-    FormItemTags} from './styled';
-import * as yup from 'yup';
+import {Container,
+        Header,
+        Title,
+        TextArea,
+        InputText,
+        Box,
+        Content,
+        FormItem,
+        SubTitle,
+        CampContainer,
+        RadioGroup,
+        BoxPlayers,
+        Select,
+        SaveBtn,
+        TagContainer,
+        TagTextArea,
+        Tag,
+        FormItemTags} from './styled';
 import {CloseOutlined} from "@ant-design/icons"
 import {timeSchema} from '../../Helper/Validation';
 
@@ -30,13 +29,14 @@ export const CreateTeam = () =>{
     const [checkBox,setCheckBox] = useState("");
     const [players, setPlayers] = useState([]);
     const [playersSelecteds,setPlayersSelected] = useState([]);
-    const [tags,setTags] = useState([]);
+    const [tags,setTags] = useState(["eita","preula"]);
     const [name, setName] = useState("");
     const [description,setDescription] = useState("");
     const [site,setSite] = useState("");
     const [formation,setFormation] = useState(0);
     const [search, setSearch] = useState("");
     const [activeSearch, setActiveSearch] = useState('');
+    const [inputTextTag,setInputTextTag] = useState("");
 
     useEffect(()=>{
         clearTimeout(searchTimer);
@@ -76,9 +76,14 @@ export const CreateTeam = () =>{
     };
 
     const handleChangeFormation= (event) => {
-        console.log(event.target.value);
         setFormation(event.target.value);
     };
+
+    const deleteTag =(index)=>{
+        let tagsCopy = [...tags];
+        let newarray =  tagsCopy.filter((item,ix)=> ix !== index);
+        setTags(newarray);
+    }
 
     const handleSave = () =>{
         const time= {
@@ -110,6 +115,13 @@ export const CreateTeam = () =>{
         </BoxPlayers>
     }
 
+    const handleTags = (event) => {
+        if(event.key === 'Enter' && inputTextTag !== ""){
+            setTags([...tags,inputTextTag]);
+            setInputTextTag("");
+            
+        }
+    }
 
     return <Container>
         <Header>Create your team</Header>
@@ -120,14 +132,15 @@ export const CreateTeam = () =>{
                     <SubTitle>
                         Team name
                     </SubTitle>
-                    <InputText placeholder="Insert team name" onChange={(e)=>setName(e.target.value)}/>
+                    <InputText placeholder="Insert team name" value={name}
+                    onChange={(e)=>setName(e.target.value)}/>
                 </FormItem>
 
                 <FormItem row="2">
                     <SubTitle>
                         Description
                     </SubTitle>
-                    <TextArea onChange={(e)=>setDescription(e.target.value)}/>
+                    <TextArea value={description} onChange={(e)=>setDescription(e.target.value)}/>
                 </FormItem>
             </Box>
 
@@ -136,7 +149,8 @@ export const CreateTeam = () =>{
                     <SubTitle>
                         Team website
                     </SubTitle>
-                    <InputText placeholder="www.myteam.com" onChange={(e)=>setSite(e.target.value)}/>
+                    <InputText placeholder="www.myteam.com" value={site} 
+                    onChange={(e)=>setSite(e.target.value)}/>
                 </FormItem>
 
                 <FormItem row="2">
@@ -165,10 +179,22 @@ export const CreateTeam = () =>{
                     </SubTitle>
                     <TagContainer>
                         <ul>
-                            <Tag>Eita<CloseOutlined className="button"style={{color:"#ffffff"}} onClick={()=>{}}/>
-                            </Tag>
+                            {
+                                tags.length > 0 &&
+                                    tags.map((item,key)=>{
+                                       return <Tag key={key}>{item}<CloseOutlined 
+                                        className="button"style={{color:"#ffffff"}} 
+                                        onClick={()=>{deleteTag(key)}}/>
+                                        </Tag>         
+                                    })
+                            }
+
                             <Tag className="input-li">
-                                <TagTextArea placeholder="Tag"/>
+                                <TagTextArea placeholder="Tag" 
+                                value={inputTextTag}
+                                onChange={(e)=>{setInputTextTag(e.target.value)}}
+                                onKeyPress={(e)=>handleTags(e)} 
+                                />
                             </Tag>
                         </ul>
                     </TagContainer>  

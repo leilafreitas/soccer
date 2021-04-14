@@ -229,6 +229,7 @@ export const SaveBtn = styled.div`
     justify-content:center;
     align-items:center;
     background-image:linear-gradient(#94337E,#88307E);
+    cursor:pointer;
 
 `;
 
