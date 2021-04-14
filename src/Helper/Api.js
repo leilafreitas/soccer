@@ -1,17 +1,6 @@
 import axios from 'axios';
 
-const API_KEY="bb0abf0234024d0eb62b92597db41821";
 const BASE = "https://venturus-f6097-default-rtdb.firebaseio.com/";
-
-var myHeaders = new Headers();
-myHeaders.append("x-rapidapi-key", API_KEY);
-myHeaders.append("x-rapidapi-host", "BASE");
-
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
 
 export default{
     getTeams:async()=>{

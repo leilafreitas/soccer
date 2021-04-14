@@ -22,6 +22,8 @@ import {Container,
         FormItemTags} from './styled';
 import {CloseOutlined} from "@ant-design/icons"
 import {timeSchema} from '../../Helper/Validation';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 let searchTimer = null;
     
@@ -77,6 +79,7 @@ export const CreateTeam = () =>{
 
     const handleChangeFormation= (event) => {
         setFormation(event.target.value);
+        setPlayersSelected([]);
     };
 
     const deleteTag =(index)=>{
@@ -98,8 +101,16 @@ export const CreateTeam = () =>{
         timeSchema.isValid(time).then(value=>{
             if(value){
                 api.postTime(time);
+                setName("");
+                setDescription("");
+                setTags([]);
+                setPlayersSelected([]);
+                setSite("");
+                setCheckBox("");
+                setSearch("");
+                toast.success('Time cadastrado com sucesso');
             }else{
-                console.log("Não foi possivel cadastrar");
+                toast.error('Error: Verifique os campos');
             }
         
         })
@@ -222,6 +233,7 @@ export const CreateTeam = () =>{
                 </Select>
                 <Camp formation={formation}/>
                 <SaveBtn onClick={()=>handleSave()}>Save</SaveBtn>
+                <ToastContainer/>
             </CampContainer>
             <Box>
                 <FormItem row="1">

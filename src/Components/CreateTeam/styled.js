@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export const Container = styled.div`
     margin:3em;
@@ -232,5 +234,6 @@ export const SaveBtn = styled.div`
     cursor:pointer;
 
 `;
+
 
 
