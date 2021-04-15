@@ -2,7 +2,7 @@
 Projeto desenvolvido com Firebase (Servidor) e React JS (frontend)
 
 
-No frontend foram utilizadas dependencias como styled-components, axios, reac-tooltip, react-toastfy, dentre outras, sendo assim, insira o comando 
+No frontend foram utilizadas dependencias como styled-components, axios, react-tooltip, react-toastfy, react-router-dom, ant-design/icons e yup, sendo assim, insira o comando 
   ### `npm install` 
   para fazer as instalações necessárias para essas dependencias e então pode rodar a aplicação React com 
   ### `npm start`
