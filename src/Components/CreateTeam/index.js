@@ -48,9 +48,7 @@ export const CreateTeam = () =>{
     },[search]);
     
     useEffect(()=>{
-
-        getPlayers();
-            
+        getPlayers();            
     },[activeSearch,playersSelecteds]);
 
     const addPlayer=(player)=>{
@@ -127,7 +125,7 @@ export const CreateTeam = () =>{
     }
 
     const handleTags = (event) => {
-        if(event.key === 'Enter' && inputTextTag !== ""){
+        if((event.which === 32 || event.key === 'Enter') && inputTextTag !== ""){
             setTags([...tags,inputTextTag]);
             setInputTextTag("");
             

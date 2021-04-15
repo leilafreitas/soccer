@@ -12,7 +12,6 @@ import {BoxMyTeams,
         ListItemDescription,
         TimesActions
     } from './styles';
-import api from '../../Helper/Api';
 import ReactTooltip from 'react-tooltip';
 
 export const MyTeams = ({data,deleteTeam}) =>{
@@ -24,6 +23,11 @@ const [orderByName,setOrderByName] = useState(true);
 useEffect(()=>{
     setTeams(data);
 },[data])
+
+useEffect(()=>{
+    ReactTooltip.rebuild();
+},[teams]);
+
 
 const orderName = () =>{
     const copyLista = [...teams];
@@ -64,7 +68,6 @@ const orderDescription = () =>{
 return  <BoxMyTeams>
             <Header>
                 <p>My teams</p>
-
                 <Link to="/newteam"><BottomPlus><PlusOutlined style={{ color: '#ffffff' }} /></BottomPlus></Link>
             </Header>
             <SortedBox>

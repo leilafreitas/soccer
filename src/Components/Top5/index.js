@@ -16,12 +16,14 @@ export const TopFive = ({data}) => {
     }
 
     const getAvg = () => {
-        const lista = data.map((item,key) =>({
-            ...item,
-            avg:(item.players.reduce(somar,0)/item.players.length).toFixed(1),
-        }));
-        sortAvgH(lista);
-        sortAvgL(lista);
+        if(data.length > 0){
+            const lista = data.map((item,key) =>({
+                ...item,
+                avg:(item.players.reduce(somar,0)/item.players.length).toFixed(1),
+            }));
+            sortAvgH(lista);
+            sortAvgL(lista);
+        }
     }
 
     const sortAvgH=(lista)=>{
@@ -41,22 +43,24 @@ export const TopFive = ({data}) => {
             <AVGText type="right">Lowest avg age</AVGText>
             <ListContainer type="left">
                 {
-                    listAvgH.map((item,key)=>{
-                        return <ListAVGItem key={key} row={key+1}>
-                            <span>{item.name}</span>
-                            <span className="avg">{item.avg}</span>
-                        </ListAVGItem>
-                    })
+                    listAvgH.length > 0 &&
+                        listAvgH.map((item,key)=>{
+                            return <ListAVGItem key={key} row={key+1}>
+                                <span>{item.name}</span>
+                                <span className="avg">{item.avg}</span>
+                            </ListAVGItem>
+                        })
                 }
             </ListContainer>
             <ListContainer type="right">
                 {
-                    listAvgL.map((item,key)=>{
-                        return <ListAVGItem key={key} row={key+1}>
-                            <span>{item.name}</span>
-                            <span className="avg">{item.avg}</span>
-                            </ListAVGItem>
-                    })
+                    listAvgL.length > 0 &&
+                        listAvgL.map((item,key)=>{
+                            return <ListAVGItem key={key} row={key+1}>
+                                <span>{item.name}</span>
+                                <span className="avg">{item.avg}</span>
+                                </ListAVGItem>
+                        })
                 }
                 
             </ListContainer>
