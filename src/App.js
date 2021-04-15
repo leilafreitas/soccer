@@ -13,12 +13,12 @@ export default () => {
             <HeaderPrincipal/>
             <PageBody>
             <Switch>
-            <Route exact path="/">
-                  <HomeScreen />
-            </Route>
-            <Route path="/">
-                  <NewTeam/>
-            </Route>
+              <Route exact path="/">
+                    <HomeScreen />
+              </Route>
+              <Route path="/newteam">
+                    <NewTeam/>
+              </Route>
             </Switch>
             <ReactTooltip id='tip-top' place='top' effect='solid'/>
             </PageBody>

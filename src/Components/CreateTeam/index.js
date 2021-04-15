@@ -31,7 +31,7 @@ export const CreateTeam = () =>{
     const [checkBox,setCheckBox] = useState("");
     const [players, setPlayers] = useState([]);
     const [playersSelecteds,setPlayersSelected] = useState([]);
-    const [tags,setTags] = useState(["eita","preula"]);
+    const [tags,setTags] = useState([]);
     const [name, setName] = useState("");
     const [description,setDescription] = useState("");
     const [site,setSite] = useState("");

@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react';
+import {Link} from 'react-router-dom';
 import {PlusOutlined,CaretDownOutlined,CaretUpOutlined,DeleteFilled,ShareAltOutlined, EditFilled} from "@ant-design/icons"
 import {BoxMyTeams,
-        BoxTopFive,
         BottomPlus,
         SortTeams,
         Header,
@@ -64,7 +64,8 @@ const orderDescription = () =>{
 return  <BoxMyTeams>
             <Header>
                 <p>My teams</p>
-                <BottomPlus><PlusOutlined style={{ color: '#ffffff' }} /></BottomPlus>
+
+                <Link to="/newteam"><BottomPlus><PlusOutlined style={{ color: '#ffffff' }} /></BottomPlus></Link>
             </Header>
             <SortedBox>
                 <SortTeams type="name">

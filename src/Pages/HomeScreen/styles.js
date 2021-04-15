@@ -24,3 +24,8 @@ export const BoxRight = styled.div`
     grid-template-rows:5fr 1em 4fr;
 `;
 
+export const FooterGrid = styled.div`
+    grid-row:3;
+    grid-column:1/6;
+`;
+
