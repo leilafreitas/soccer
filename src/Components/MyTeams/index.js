@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import {PlusOutlined,CaretDownOutlined,CaretUpOutlined,DeleteFilled,ShareAltOutlined, EditFilled} from "@ant-design/icons"
 import {BoxMyTeams,
         BoxTopFive,
@@ -15,7 +15,51 @@ import {BoxMyTeams,
 import api from '../../Helper/Api';
 import ReactTooltip from 'react-tooltip';
 
-export const MyTeams = ({data,orderName,orderDescription,deleteTeam}) =>{
+export const MyTeams = ({data,deleteTeam}) =>{
+
+const [teams,setTeams] = useState([]);    
+const [orderByDescription,setOrderByDescripion] = useState(true);
+const [orderByName,setOrderByName] = useState(true); 
+
+useEffect(()=>{
+    setTeams(data);
+},[data])
+
+const orderName = () =>{
+    const copyLista = [...teams];
+    let ordenate=[];
+    if(orderByName){
+        ordenate = copyLista.sort(function(a,b) {
+            return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+        });
+        setOrderByName(false);
+        
+    }else{
+        ordenate = copyLista.sort(function(a,b) {
+            return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+        }).reverse();
+        setOrderByName(true);
+    }
+    setTeams(ordenate);        
+}
+
+const orderDescription = () =>{
+    const copyLista = [...teams];
+    let ordenate=[];
+    if(orderByDescription){
+        ordenate = copyLista.sort(function(a,b) {
+            return a.description < b.description ? -1 : a.description > b.description ? 1 : 0;
+        });
+        setOrderByDescripion(false);
+        
+    }else{
+        ordenate = copyLista.sort(function(a,b) {
+            return a.description < b.description ? -1 : a.description > b.description ? 1 : 0;
+        }).reverse();
+        setOrderByDescripion(true);
+    }
+    setTeams(ordenate);        
+}
 
 return  <BoxMyTeams>
             <Header>
@@ -32,7 +76,7 @@ return  <BoxMyTeams>
                 </SortTeams>
                 <SortTeams type="description">
                     <p>Description</p>
-                    <div onClick={()=>orderDescription()}>
+                    <div onClick={()=>{orderDescription()}}>
                         <CaretUpOutlined style={{fontSize:"0.7em",color:"#000000"}}/>
                         <CaretDownOutlined style={{fontSize:"0.7em",color:"#000000"}}/>
                     </div>
@@ -40,8 +84,8 @@ return  <BoxMyTeams>
             </SortedBox>
             <ListTeamsTable>
                     {
-                        (data.length > 0 &&
-                        data.map((item,key)=>{
+                        (teams.length > 0 &&
+                        teams.map((item,key)=>{
                             return <ListTeamsItem key={key}>
                                 <ListItemName>{item.name}</ListItemName>
                                 <ListItemDescription>

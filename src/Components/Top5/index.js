@@ -18,7 +18,7 @@ export const TopFive = ({data}) => {
     const getAvg = () => {
         const lista = data.map((item,key) =>({
             ...item,
-            avg:item.players.reduce(somar,0)/item.players.length,
+            avg:(item.players.reduce(somar,0)/item.players.length).toFixed(1),
         }));
         sortAvgH(lista);
         sortAvgL(lista);
