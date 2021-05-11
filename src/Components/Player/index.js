@@ -14,12 +14,17 @@ import Avatar3 from "../../assets/avatar3.png";
 import Avatar1 from "../../assets/avatar1.png";
 
 export const Player = ({ teams, players }) => {
+  const [playerList, setPlayerList] = useState(players);
   const [mostPopular, setMostPopular] = useState({});
   const [lastPopular, setLastPopular] = useState({});
 
   useEffect(() => {
-    setMostAndLess();
+    setPlayerList(players);
   }, [players]);
+
+  useEffect(() => {
+    setMostAndLess();
+  }, [playerList]);
 
   const getNumberOnTeamsForPlayer = (playerId) => {
     let quantity = 0;
@@ -33,7 +38,7 @@ export const Player = ({ teams, players }) => {
   };
 
   const setPercentPlayers = () => {
-    const playersQuantityTeams = players.map((player) => ({
+    const playersQuantityTeams = playerList.map((player) => ({
       ...player,
       percent:
         (getNumberOnTeamsForPlayer(player.playerId) / teams.length) * 100,
